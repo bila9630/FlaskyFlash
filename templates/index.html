@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Game</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1>rock, paper, scissors</h1>
+    <p>Please enter either "paper", "rock" or "scissors"</p>
+    <form action="/" method="POST">
+        <input type="text" name="content">
+        <input type="submit" value="Send play move">
+    </form>
+    <br>
+    <br>
+    {{ player_text }}
+    <br>
+    {{ AI_text }}
+    <br>
+    {{ losing_text }}
+    {{ score }}
+    <br>
+    {% if wins_score >= 5 %}
+    <p>You lose too often. The score will be restarted!</p>
+    {% endif %}
+</div>
+{% endblock %}
