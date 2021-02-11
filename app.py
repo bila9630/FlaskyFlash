@@ -8,18 +8,21 @@ moves = ["rock", "paper", "scissors"]
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
-        # getting respond from player
-        player_move = request.form['content']
-        # check if input is legit
-        if not player_move in moves:
-            return render_template('index.html', result="can't process input. Pls enter rock, paper or scissor")
-
-        # AI responds xD
-        AI_move = ultimateAI(player_move)
 
         if not ('wins' in globals()):
             global wins
             wins = 0
+
+        # getting respond from player
+        player_move = request.form['content']
+        # check if input is legit
+        if not player_move in moves:
+            return render_template('index.html',
+                                   result="can't process input. Pls enter rock, paper or scissor",
+                                   wins_score=wins)
+
+        # AI responds xD
+        AI_move = ultimateAI(player_move)
 
         wins += 1
 
